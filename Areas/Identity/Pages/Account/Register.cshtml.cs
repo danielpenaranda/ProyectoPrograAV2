@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using ProyectoPrograAV2.Models;
+
 
 namespace ProyectoPrograAV2.Areas.Identity.Pages.Account
 {
@@ -70,6 +72,7 @@ namespace ProyectoPrograAV2.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -97,6 +100,10 @@ namespace ProyectoPrograAV2.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string nombre { get; set; }//Nuevoooo LINEA 103
+            //public DateTime ultimaConexion { get; set; }
+            //public bool estado { get; set; }
         }
 
 
@@ -105,19 +112,19 @@ namespace ProyectoPrograAV2.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
-
+        
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                //var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, nombre = Input.nombre };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-
+                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -152,6 +159,11 @@ namespace ProyectoPrograAV2.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private IdentityUser ApplicationUser()
+        {
+            throw new NotImplementedException();
         }
 
         private IdentityUser CreateUser()

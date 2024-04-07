@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ProyectoPrograAV2.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Productos</h1>
+
+<p>
+    <a class=" btn btn-success"  asp-action="Create">Crear Nuevo </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidadProductos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaPublicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidadProductos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaPublicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descuento)
+                </td>
+                <td>
+                    <img class="imgProducto" src="@Html.DisplayFor(modelItem => item.imagen)" alt="Imagen del producto" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    <a class="btn btn-primary"  asp-action="Edit" asp-route-id="@item.id_producto">Editar</a> 
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.id_producto">Datalle</a> 
+                    <a style="margin-top:5px;margin-left:30px"class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id_producto">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

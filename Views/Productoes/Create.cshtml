@@ -1,0 +1,76 @@
+﻿@model ProyectoPrograAV2.Models.Producto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear</h1>
+
+<h4>Producto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nombreProducto" class="control-label"></label>
+                <input asp-for="nombreProducto" class="form-control" />
+                <span asp-validation-for="nombreProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cantidadProductos" class="control-label"></label>
+                <input asp-for="cantidadProductos" class="form-control" />
+                <span asp-validation-for="cantidadProductos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaPublicacion" class="control-label"></label>
+                <input asp-for="fechaPublicacion" class="form-control" />
+                <span asp-validation-for="fechaPublicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="precio" class="control-label"></label>
+                <input asp-for="precio" class="form-control" />
+                <span asp-validation-for="precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="iva" class="control-label"></label>
+                <input asp-for="iva" class="form-control" />
+                <span asp-validation-for="iva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descuento" class="control-label"></label>
+                <input asp-for="descuento" class="form-control" />
+                <span asp-validation-for="descuento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imagen" class="control-label"></label>
+                <input asp-for="imagen" class="form-control" />
+                <span asp-validation-for="imagen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="control-label"></label>
+                <select asp-for="estado" class="form-control">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div style="margin-top:20px;"  class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a style="margin-top:20px;" class=" btn btn-success" asp-action="Index">Ir a Listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

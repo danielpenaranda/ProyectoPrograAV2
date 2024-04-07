@@ -1,4 +1,5 @@
 ﻿@page
+@using ProyectoPrograAV2.Models
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -11,6 +12,14 @@
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
+            <!--NUEVO DE AQUÍ-->
+           <div class="form-floating mb-3">
+                <input asp-for="Input.nombre" class="form-control" autocomplete="nombre" aria-required="true" placeholder="Juan Perez" />
+                <label asp-for="Input.nombre" class="form-label">Nombre</label>
+                <span asp-validation-for="Input.nombre" class="text-danger"></span>
+              </div>
+
+            <!--HASTA AQUÍ-->
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />

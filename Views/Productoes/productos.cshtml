@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ProyectoPrograAV2.Models.Producto>
+
+@{
+    ViewData["Title"] = "Tienda";
+}
+
+<h1>Tienda</h1>
+
+<div class="row">
+    @foreach (var producto in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="@producto.imagen" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@producto.nombreProducto</h5>
+                    <p class="card-text">@producto.descripcion</p>
+                    <p class="card-text">Precio: @producto.precio</p>
+                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
