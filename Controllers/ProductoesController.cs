@@ -11,9 +11,9 @@ namespace ProyectoPrograAV2.Controllers
 {
     public class ProductoesController : Controller
     {
-        private readonly ProyectoTiendaG6Context _context;
+        private readonly DemoContext _context;
 
-        public ProductoesController(ProyectoTiendaG6Context context)
+        public ProductoesController(DemoContext context)
         {
             _context = context;
         }

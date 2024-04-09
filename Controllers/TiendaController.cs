@@ -3,9 +3,9 @@ using ProyectoPrograAV2.Models;
 
 public class TiendaController : Controller
 {
-    private readonly ProyectoTiendaG6Context _context;
+    private readonly DemoContext _context;
 
-    public TiendaController(ProyectoTiendaG6Context context)
+    public TiendaController(DemoContext context)
     {
         _context = context;
     }

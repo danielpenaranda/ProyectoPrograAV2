@@ -1,0 +1,68 @@
+﻿@model Usuario
+<style>
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+    }
+
+    form {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 320px;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333333;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    .register-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333333;
+    }
+</style>
+<div class="register-container">
+<form method="post" asp-controller="Registro" asp-action="SubmitForm">
+        <div class="register-title">
+            <h2>Registrar</h2>
+        </div>
+    <label>Nombre:</label>
+    <input asp-for="nombreU" />
+    <br />
+    <label>Correo electronico:</label>
+    <input type="email" asp-for="email" />
+    <br />
+    <label>Contraseña:</label>
+    <input type="password" asp-for="contrasena" />
+    <br />
+    <button type="submit">Submit</button>
+</form>
+</div>
