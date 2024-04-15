@@ -6,6 +6,13 @@ namespace ProyectoPrograAV2.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly DemoContext _context;
+
+        public LoginController(DemoContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult login()
         {
             return View();
@@ -14,9 +21,9 @@ namespace ProyectoPrograAV2.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string contrasena)
         {
-            using (var context = new DemoContext())
-            {
-                var usuarioEncontrado = await context.usuarios.
+           // using (var context = new DemoContext()) //LINEA 17 DE ERROR
+            //{
+                var usuarioEncontrado = await _context.usuarios.
                     FirstOrDefaultAsync(u => u.email == email && u.contrasena == contrasena);
 
                 if (usuarioEncontrado != null)
@@ -34,4 +41,4 @@ namespace ProyectoPrograAV2.Controllers
 
 
     }
-    }
+    //}

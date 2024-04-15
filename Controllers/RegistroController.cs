@@ -7,6 +7,12 @@ namespace ProyectoPrograAV2.Controllers
 {
     public class RegistroController : Controller
     {
+        private readonly DemoContext _context;
+
+        public RegistroController(DemoContext context)
+        {
+            _context = context;
+        }
         public IActionResult registro()
         {
             return View();
@@ -16,14 +22,14 @@ namespace ProyectoPrograAV2.Controllers
         {
             if (ModelState.IsValid && nuevoUsuario != null)
             {
-                using (var context = new DemoContext())
-                {
+              //  using (var context = new DemoContext()) //LINEA 19 DE ERROR
+                //{
                     nuevoUsuario.ultimaConexion = DateTime.Now;
                     nuevoUsuario.estado = true;
-                    context.Add(nuevoUsuario);
-                    await context.SaveChangesAsync();
+                    _context.Add(nuevoUsuario);
+                    await _context.SaveChangesAsync();
                     return View("..\\Login\\login");
-                }
+                //}
             }
             return Content("<a> Algo salio mal :/ </a>");
         }
