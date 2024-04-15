@@ -21,23 +21,20 @@ namespace ProyectoPrograAV2.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string contrasena)
         {
-           // using (var context = new DemoContext()) //LINEA 17 DE ERROR
-            //{
-                var usuarioEncontrado = await _context.usuarios.
-                    FirstOrDefaultAsync(u => u.email == email && u.contrasena == contrasena);
+            var usuarioEncontrado = await _context.usuarios
+                .FirstOrDefaultAsync(u => u.email == email);
 
-                if (usuarioEncontrado != null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-
-                    return RedirectToAction("login", "Login");
-
-                }
+            if (usuarioEncontrado != null && usuarioEncontrado.CheckPassword(contrasena))
+            {
+                HttpContext.Session.SetString("UserId", usuarioEncontrado.id_usuario.ToString());
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("login", "Login");
             }
         }
+    }
 
 
     }
