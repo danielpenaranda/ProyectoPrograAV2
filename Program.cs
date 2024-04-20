@@ -12,7 +12,7 @@ builder.Services.AddRazorPages();
 
 // Add DbContext service with a direct connection string (Not recommended for production)
 builder.Services.AddDbContext<DemoContext>(options =>
-    options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=ProyectoDB;Trusted_Connection=True;TrustServerCertificate=True;"));
+    options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=proyecto_tienda_G6;Trusted_Connection=True;TrustServerCertificate=True;"));
 
 // Configure session services
 builder.Services.AddDistributedMemoryCache();

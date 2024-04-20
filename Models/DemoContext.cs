@@ -15,7 +15,7 @@ public partial class DemoContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=ProyectoDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=proyecto_tienda_G6;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
     public DbSet<Usuario> usuarios { get; set; }
