@@ -19,8 +19,11 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="about">Sobre nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -39,8 +42,11 @@
                         </li>
                     </ul>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Carrito" asp-action="carrito">Carrito</a>
-                    </li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Carrito" asp-action="carrito">
+                            <img src="~/img/anadir-al-carrito.png" alt="Carrito" style="width:25px; margin-right:5px;">
+                        </a>
+                     </li>
+                    
                     <!--  <partial name="_LoginPartial" />-->
                 </div>
             </div>
@@ -56,6 +62,12 @@
         <div class="container">
             &copy; 2024 - ProyectoPrograAV2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+        <!--<ul class="redes-sociales">
+            <li><a href="#"><img src="~/img/logo-facebook.png" alt="Facebook"></a></li>
+            <li><a href="#"><img src="~/img/instagram.png" alt="Instagram"></a></li>
+            <li><a href="#"><img src="~/img/whatsapp.png" alt="WhatsApp"></a></li>
+            <li><a href="#"><img src="~/img/tik-tok.png" alt="TikTok"></a></li>
+        </ul>-->
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -63,3 +75,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

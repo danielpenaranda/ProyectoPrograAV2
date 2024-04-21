@@ -39,10 +39,24 @@ button.accept-policy {
   line-height: inherit;
 }
 
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+}
+.redes-sociales {
+    list-style: none; /* Eliminar la viñeta de la lista */
+    padding: 0; /* Eliminar el relleno de la lista */
+    display: flex; /* Mostrar los ítems en línea */
+    justify-content: center;
+}
+.redes-sociales li{
+    margin: 0 10px;
+}
+.redes-sociales img{
+    width:40px;
+    height:40px;
 }

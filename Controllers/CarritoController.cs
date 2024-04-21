@@ -9,11 +9,30 @@ using System.Xml;
 namespace ProyectoPrograAV2.Controllers
 {
     public class CarritoController : Controller
-    { 
+    {
         private readonly string _conexion = "@\"Server=.\\SQLEXPRESS;Database=proyecto_tienda_G6;Trusted_Connection=True;TrustServerCertificate=True;";
+        private readonly DemoContext _context;
+        public CarritoController(DemoContext context)
+        {
+            _context = context;
+        }
+        [HttpPost]
+        public IActionResult AgregarAlCarrito(int id_producto)
+        {
+            var producto = _context.productos.Find(id_producto);
+            if(producto == null)
+            {
+                var productoEnCarrito = new Carrito { id_producto = id_producto };
+                _context.carrito.Add(productoEnCarrito);
+                _context.SaveChanges();
 
+                return RedirectToAction("Carrito");
+            }
+            return RedirectToAction("carrito");
+        }
         public IActionResult carrito()
         {
+            var productosEnCarrito = new List<Producto>();
             return View();
         }
 
@@ -35,12 +54,16 @@ namespace ProyectoPrograAV2.Controllers
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
                     respuesta = Convert.ToInt32(cmd.Parameters["@Resultado"].Value);
+                    TempData["Mensaje"] = "Producto agregado al carrito";
+                   // return Json("Producto agregado al carrito");
 
                 }
                 catch (Exception ex)
                 {
                     respuesta = 0;
                     // Manejar la excepción
+                    TempData["Error"] = "Error al agregar el producto al carrito: " + ex.Message;
+                    //return Json("Error al agregar el producto al carrito: " + ex.Message);
                 }
             }
             return respuesta;
@@ -93,6 +116,7 @@ namespace ProyectoPrograAV2.Controllers
                                 id_producto = Convert.ToInt32(dr["id_producto"]),
                                 cantidadProductos = Convert.ToInt32(dr["cantidadProductos"]),
                                 fechaCompra = Convert.ToDateTime(dr["fechaCompra"])
+
                             });
                         }
                     }
@@ -121,11 +145,15 @@ namespace ProyectoPrograAV2.Controllers
                     cmd.Parameters.AddWithValue("@idProducto", idProducto);
 
                     cmd.ExecuteNonQuery();
+                    TempData["Mensaje"] = "Producto eliminado del crrito";
+                    //return RedirectToAction("carrito");
                 }
                 catch (Exception ex)
                 {
                     respuesta = false;
                     // Manejar la excepción
+                    TempData["Error"] = "Error al eliminar el prodcuto del carrito: " + ex.Message;
+                    //return RedirectToAction("carrito");
                 }
             }
             return respuesta;
