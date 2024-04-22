@@ -19,23 +19,23 @@ namespace ProyectoPrograAV2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string contrasena)
+        public async Task<IActionResult> IniciarSesion(string usuario, string contrasena)
         {
             var usuarioEncontrado = await _context.usuarios
-                .FirstOrDefaultAsync(u => u.email == email);
+                .FirstOrDefaultAsync(u => u.nombreU == usuario && u.contrasena == contrasena);
 
-            if (usuarioEncontrado != null && usuarioEncontrado.CheckPassword(contrasena))
+            if (usuarioEncontrado != null)
             {
-                HttpContext.Session.SetString("UserId", usuarioEncontrado.id_usuario.ToString());
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Tienda"); 
             }
             else
             {
-                return RedirectToAction("login", "Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
+
     }
 
 
-    }
-    //}
+}
+  

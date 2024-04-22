@@ -14,7 +14,6 @@ namespace ProyectoPrograAV2.Models
 
             public string contrasena { get; set; }
 
-            public string ContrasenaHash { get; set; }
             public DateTime ultimaConexion { get; set; }
 
             public bool estado { get; set; }
@@ -24,16 +23,6 @@ namespace ProyectoPrograAV2.Models
                 estado = true;
                 ultimaConexion = DateTime.Now; // Esto establece la fecha de última conexión al momento de la creación del objeto
             }
-            public void SetPassword(string password)
-        {
-            var hasher = new PasswordHasher<Usuario>();
-            ContrasenaHash = hasher.HashPassword(this, password);
-        }
-
-            public bool CheckPassword(string password)
-        {
-            var hasher = new PasswordHasher<Usuario>();
-            return hasher.VerifyHashedPassword(this, this.ContrasenaHash, password) == PasswordVerificationResult.Success;
-        }
+      
     }
     }

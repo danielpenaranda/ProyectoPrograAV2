@@ -18,18 +18,16 @@ namespace ProyectoPrograAV2.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SubmitForm(Usuario nuevoUsuario, string contrasena)
+        public async Task<IActionResult> SubmitForm(Usuario nuevoUsuario)
         {
-            if (ModelState.IsValid && nuevoUsuario != null)
+            if (nuevoUsuario != null)
             {
-                nuevoUsuario.SetPassword(contrasena);
-                nuevoUsuario.ultimaConexion = DateTime.Now;
-                nuevoUsuario.estado = true;
                 _context.Add(nuevoUsuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("login", "Login");
+                return RedirectToAction("login", "Login");  // Modificado para redirigir usando RedirectToAction
             }
-            return Content("<a> Algo salio mal :/ </a>");
+            return Content("<a> Salio Mal</a>"); // Podrías considerar mejorar este mensaje de error.
         }
+
     }
 }
