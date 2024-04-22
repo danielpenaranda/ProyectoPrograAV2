@@ -19,10 +19,10 @@ namespace ProyectoPrograAV2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> IniciarSesion(string usuario, string contrasena)
+        public async Task<IActionResult> IniciarSesion(string email, string contrasena)
         {
             var usuarioEncontrado = await _context.usuarios
-                .FirstOrDefaultAsync(u => u.nombreU == usuario && u.contrasena == contrasena);
+                .FirstOrDefaultAsync(u => u.email == email && u.contrasena == contrasena);
 
             if (usuarioEncontrado != null)
             {
@@ -30,7 +30,7 @@ namespace ProyectoPrograAV2.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Tienda");
+                return RedirectToAction("login", "Login");
             }
         }
 

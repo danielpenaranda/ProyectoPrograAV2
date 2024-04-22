@@ -9,6 +9,7 @@ namespace ProyectoPrograAV2.Models
         public int id_usuario { get; set; }
         public int id_producto { get; set; }
         public int cantidadProductos { get; set; }
+        public Decimal precioT { get; set; }
         public DateTime fechaCompra {  get; set; }
     }
 }

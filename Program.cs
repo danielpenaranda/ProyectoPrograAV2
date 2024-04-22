@@ -14,6 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DemoContext>(options =>
     options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=proyecto_tienda_G6;Trusted_Connection=True;TrustServerCertificate=True;"));
 
+
 // Configure session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
