@@ -22,16 +22,24 @@ namespace ProyectoPrograAV2.Controllers
             var producto = _context.productos.Find(id_producto);
             if (producto == null)
             {
-                // Producto no encontrado, manejar adecuadamente
-                return NotFound();
+                var productoEnCarrito = new Carrito { id_producto = id_producto };
+                _context.carrito.Add(productoEnCarrito);
+                _context.SaveChanges();
+
+                return RedirectToAction("Carrito");
+            
+          
             }
-
-            var productoEnCarrito = new Carrito { id_producto = id_producto };
-            _context.carrito.Add(productoEnCarrito);
-            _context.SaveChanges();
-
-            return RedirectToAction("carrito", "Carrito");
+            return RedirectToAction("carrito");
         }
+        public IActionResult carrito()
+        {
+            var productosEnCarrito = new List<Producto>();
+            return View();
+        }
+    
+
+            
         public int Registrar(Carrito oCarrito)
         {
             int respuesta = 0;
