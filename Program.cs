@@ -42,6 +42,12 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=tienda}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "historial",
+    pattern: "Historial/HistorialUsuario/{id_usuario}",
+    defaults: new { controller = "Historial", action = "HistorialUsuario" }
+);
 
 app.Run();

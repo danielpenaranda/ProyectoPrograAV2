@@ -1,0 +1,43 @@
+﻿@model List<ProyectoPrograAV2.Models.Historial>
+
+@{
+    ViewData["Title"] = "historial";
+}
+
+<h1>Historial</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad Total</th>
+            <th>Pagos</th>
+            <td>Accion</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_producto</td>
+                <td>@item.cantidadTotal</td>
+                <td>@item.pagos</td>
+                    <form method="post" asp-controller="Historial" asp-action="EliminarHistorial">
+                        <input type="hidden" name="idHistorial" value="@item.id_historial" />
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+            </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No se encontraron registros de historial para este usuario.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
